@@ -2,26 +2,471 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================================
+   Design Tokens – CSS Variables
+   ================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+
+  /* Muted */
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+
+  /* Primary */
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+
+  /* Secondary */
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+
+  /* Border & Ring */
+  --border: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Dark mode */
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+
+  --border: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}
+
+/* Base application styles */
+html,
+body {
+  height: 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+
+.perspective-\[1200px\] {
+  perspective: 1200px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+
+
+
+
+
+
+.marquee {
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+
+
+/* Add these styles to your existing globals.css file */
+
+/* Hero Section Styles */
+.hero-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  overflow: hidden;
+  perspective: 2000px;
+}
+
+.hero-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text Styling */
+.hero-text {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.text-black {
+  color: #000000;
+}
+
+.text-future {
+  position: relative;
+  color: #000000;
+  display: inline-block;
+  mix-blend-mode: normal;
+}
+
+/* Color overlay effect for "Future" */
+.text-future::before {
+  content: 'Future ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: transparent;
+  background: linear-gradient(135deg, #00d4ff 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  mix-blend-mode: screen;
+  z-index: 2;
+}
+
+/* Cube Wrapper */
+.cube-wrapper {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* 3D Cube */
+.cube {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+/* Cube Faces */
+.cube-face {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #f5f5f5;
+  border: 3px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  backface-visibility: visible;
+}
+
+.face-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Front Face - 200px forward */
+.front {
+  transform: translateZ(200px);
+}
+
+/* Back Face - 200px backward */
+.back {
+  transform: rotateY(180deg) translateZ(200px);
+}
+
+/* Right Face - 200px right */
+.right {
+  transform: rotateY(90deg) translateZ(200px);
+}
+
+/* Left Face - 200px left */
+.left {
+  transform: rotateY(-90deg) translateZ(200px);
+}
+
+/* Top Face - 200px up */
+.top {
+  transform: rotateX(90deg) translateZ(200px);
+}
+
+/* Bottom Face - 200px down */
+.bottom {
+  transform: rotateX(-90deg) translateZ(200px);
+}
+
+/* Face Content Styles */
+
+/* Products Face */
+.products {
+  background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 100%);
+  padding: 40px;
+  gap: 20px;
+}
+
+.product-bottle {
+  width: 80px;
+  height: 140px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.shampoo {
+  background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+}
+
+.conditioner {
+  background: linear-gradient(180deg, #8b9d7f 0%, #6b7d5f 100%);
+}
+
+.bottle-label {
+  font-size: 8px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.stone {
+  width: 60px;
+  height: 30px;
+  background: #d4d4d4;
+  border-radius: 50%;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile App Face */
+.mobile-app {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.phone-mockup {
+  width: 180px;
+  height: 320px;
+  background: #1a1a1a;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #2d1b69 0%, #1a0f3d 100%);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.app-header {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.app-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.app-card {
+  width: 100%;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+/* Portrait Face */
+.portrait {
+  background: #000000;
+  position: relative;
+}
+
+.circle-bg {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: #ff6b35;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.silhouette {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  background: radial-gradient(ellipse at top, #1a1a1a 0%, #000000 70%);
+  border-radius: 50% 50% 0 0;
+  bottom: 80px;
+  z-index: 2;
+}
+
+/* Gradient Face */
+.gradient-face {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.gradient-overlay {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Texture Face */
+.texture-face {
+  background: linear-gradient(45deg, #f5f5f5 25%, #e0e0e0 25%, #e0e0e0 50%, #f5f5f5 50%, #f5f5f5 75%, #e0e0e0 75%, #e0e0e0);
+  background-size: 40px 40px;
+}
+
+.texture-pattern {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 10%, transparent 10%);
+  background-size: 30px 30px;
+}
+
+/* Dark Face */
+.dark-face {
+  background: #1a1a1a;
+}
+
+.dark-overlay {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #333333 0%, #000000 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+  }
+
+  .cube-wrapper {
+    width: 400px;
+    height: 400px;
+  }
+
+  .cube {
+    width: 320px;
+    height: 320px;
+  }
+
+  .cube-face {
+    width: 320px;
+    height: 320px;
+  }
+
+  .front {
+    transform: translateZ(160px);
+  }
+
+  .back {
+    transform: rotateY(180deg) translateZ(160px);
+  }
+
+  .right {
+    transform: rotateY(90deg) translateZ(160px);
+  }
+
+  .left {
+    transform: rotateY(-90deg) translateZ(160px);
+  }
+
+  .top {
+    transform: rotateX(90deg) translateZ(160px);
+  }
+
+  .bottom {
+    transform: rotateX(-90deg) translateZ(160px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 5rem);
+  }
+
+  .cube-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  .cube {
+    width: 250px;
+    height: 250px;
+  }
+
+  .cube-face {
+    width: 250px;
+    height: 250px;
+  }
+
+  .front {
+    transform: translateZ(125px);
+  }
+
+  .back {
+    transform: rotateY(180deg) translateZ(125px);
+  }
+
+  .right {
+    transform: rotateY(90deg) translateZ(125px);
+  }
+
+  .left {
+    transform: rotateY(-90deg) translateZ(125px);
+  }
+
+  .top {
+    transform: rotateX(90deg) translateZ(125px);
+  }
+
+  .bottom {
+    transform: rotateX(-90deg) translateZ(125px);
   }
 }
