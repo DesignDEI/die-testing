@@ -9,7 +9,7 @@ import StartupCreditGuaranteeSection from "@/components/home/startupCreditGuaran
 import StartupMarqueeSection from "@/components/home/startupMarqueeSection";
 import StatsHighlight from "@/components/home/statsHighlight";
 import StatsHighlightLayout from "@/components/home/statsHighlightGrid";
-import { Stats } from "fs";
+
 
 export default function HomePage() {
   return (

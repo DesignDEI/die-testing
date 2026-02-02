@@ -26,16 +26,16 @@ const fadeUpVariants = {
   },
 };
 
-const highlightVariants = {
-  hidden: { scaleX: 0 },
-  show: {
-    scaleX: 1,
-    transition: {
-      duration: 0.9,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+// const highlightVariants = {
+//   hidden: { scaleX: 0 },
+//   show: {
+//     scaleX: 1,
+//     transition: {
+//       duration: 0.9,
+//       ease: [0.22, 1, 0.36, 1],
+//     },
+//   },
+// };
 
 /* ------------------ Component ------------------ */
 
